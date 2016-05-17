@@ -497,18 +497,9 @@ class ProcessorNode():
                 warning_text += "processor feature '%s' not among: %s\n" % (feature, str(self.possible_versions))
             self.features.append(feature)
         
-        #If hyperthreading is active cores must be coupled in the form of [[a,b],[c,d],...]
-        if 'ht' in self.features:
-            for iterator in sorted(cores):
-                if not isinstance(iterator,list) or len(iterator) != 2 or not isinstance(iterator[0],int) or not isinstance(iterator[1],int):
-                    return (False, 'The cores list for an hyperthreaded processor must be coupled in the form of [[a,b],[c,d],...] where a,b,c,d are of type int')
-                self.cores.append(iterator)
-        #If hyperthreading is not active the cores are a single list in the form of [a,b,c,d,...]
-        else:
-            for iterator in sorted(cores):
-                if not isinstance(iterator,int):
-                    return (False, 'The cores list for a non hyperthreaded processor must be in the form of [a,b,c,d,...] where a,b,c,d are of type int')
-                self.cores.append(iterator)
+        for iterator in sorted(cores):
+            if not isinstance(iterator,list) or not all(isinstance(x, int) for x in iterator):
+                return (False, 'The cores list must be in the form of [[a,b],[c,d],...] where a,b,c,d are of type int')
         
         self.set_eligible_cores()
         
