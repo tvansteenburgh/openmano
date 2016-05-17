@@ -962,7 +962,7 @@ def get_memory_information(ssh_conn, virsh_conn, memory_nodes):
                 
             #Add a new module to the memory node
             module = MemoryModule()
-            (return_status, code) = module.set('NODE ' + node_id, module_type, module_freq, module_size, module_form_factor)
+            (return_status, code) = module.set('NODE %d' % node_id, module_type, module_freq, module_size, module_form_factor)
             if not return_status:
                 return (return_status, code)
             memory_dict[node_id].append(module)
