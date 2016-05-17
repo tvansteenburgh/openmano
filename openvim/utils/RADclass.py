@@ -896,7 +896,7 @@ def get_memory_information(ssh_conn, virsh_conn, memory_nodes):
     warning_text=""
     tree=ElementTree.fromstring(virsh_conn.getSysinfo(0))
     memory_dict = dict()
-    locator_i = 0
+    node_id = 0
     for target in tree.findall("memory_device"):
         locator_f = size_f = freq_f = type_f = formfactor_f = False
         locator_f = True
@@ -962,8 +962,8 @@ def get_memory_information(ssh_conn, virsh_conn, memory_nodes):
                 
             #Add a new module to the memory node
             module = MemoryModule()
-            (return_status, code) = module.set(locator, module_type, module_freq, module_size, module_form_factor)
-            locator += 1
+            (return_status, code) = module.set('NODE ' + node_id, module_type, module_freq, module_size, module_form_factor)
+            node_id += 1
             if not return_status:
                 return (return_status, code)
             memory_dict[node_id].append(module)
