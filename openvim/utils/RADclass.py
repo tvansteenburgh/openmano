@@ -500,6 +500,7 @@ class ProcessorNode():
         for iterator in sorted(cores):
             if not isinstance(iterator,list) or not all(isinstance(x, int) for x in iterator):
                 return (False, 'The cores list must be in the form of [[a,b],[c,d],...] where a,b,c,d are of type int')
+            self.cores.append(iterator)
         
         self.set_eligible_cores()
         
