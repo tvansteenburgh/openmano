@@ -547,7 +547,7 @@ def http_post_hosts():
         host['features'] = ",".join(features)
         host['numas'] = [] 
         
-        for node in rad_structure['resource topology']['nodes'].itervalues():
+        for node in rad_structure['resource topology'].get('nodes', {}).itervalues():
             interfaces= []
             cores = []
             eligible_cores=[]
