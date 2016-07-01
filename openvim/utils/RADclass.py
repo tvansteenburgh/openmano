@@ -307,15 +307,15 @@ class RADclass():
         return (True, "")
     
     def to_text(self):
-        text= 'name: '+self.name+'\n'
+        text= 'name: '+str(self.name)+'\n'
         text+= 'processor:\n'
         text+= '    nr_processors: '+str(self.nr_processors)+'\n' 
-        text+= '    family: '+self.processor_family+'\n'
-        text+= '    manufacturer: '+self.processor_manufacturer+'\n'
-        text+= '    version: '+self.processor_version+'\n'
+        text+= '    family: '+str(self.processor_family)+'\n'
+        text+= '    manufacturer: '+str(self.processor_manufacturer)+'\n'
+        text+= '    version: '+str(self.processor_version)+'\n'
         text+= '    features: '+str(self.processor_features)+'\n'
         text+= 'memory:\n'
-        text+= '    type: '+self.memory_type+'\n'
+        text+= '    type: '+str(self.memory_type)+'\n'
         text+= '    freq: '+str(self.memory_freq)+'\n'
         text+= '    nr_channels: '+str(self.memory_nr_channels)+'\n'
         text+= '    size: '+str(self.memory_size)+'\n'
